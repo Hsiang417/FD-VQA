@@ -136,7 +136,8 @@ python ".\FD-VQA test.py" `
   --info_mat ".\data\KoNViD-1kinfo.mat" `
   --features_dir ".eatures\KoNViD-1k" `
   --epochs 50 --batch_size 32 --lr 1e-4 --seed 42 `
-  --out_dir ".esults\KoNViD-1k"
+  --out_dir ".
+esults\KoNViD-1k"
 ```
 
 ### Linux / macOS（bash）
