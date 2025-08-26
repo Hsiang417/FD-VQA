@@ -136,7 +136,8 @@ python ".\FD-VQA test.py" `
   --info_mat ".\data\KoNViD-1kinfo.mat" `
   --features_dir ".eatures\KoNViD-1k" `
   --epochs 50 --batch_size 32 --lr 1e-4 --seed 42 `
-  --out_dir ".esults\KoNViD-1k"
+  --out_dir ".
+esults\KoNViD-1k"
 ```
 
 ### Linux / macOS (bash)
@@ -154,16 +155,12 @@ python "FD-VQA test.py"   --dataset KoNViD-1k   --info_mat ./data/KoNViD-1kinfo.
 
 For LSVQ or full YouTube‑UGC, prefer DATALAZY to avoid OOM by chunking and caching.
 
-### Combined “extract + test”
-```bash
-python DATALAZY.py   --dataset LSVQ   --info_mat ./data/LSVQ1080p_info.mat   --videos   ./data/datasets/LSVQ/videos   --out_root ./results/LSVQ_DATALAZY   --extract --test   --chunk_size 64 --num_workers 12 --prefetch 4   --device cuda:0
-```
 
 ### Extract only → then run test
 ```bash
-python DATALAZY.py   --dataset LSVQ   --info_mat ./data/LSVQ1080p_info.mat   --videos   ./data/datasets/LSVQ/videos   --out_root ./features/LSVQ_DATALAZY   --extract   --chunk_size 64 --num_workers 12 --device cuda:0
+python FD-VQA extract.py   --dataset LSVQ   --info_mat ./data/LSVQ1080p_info.mat   --videos   ./data/datasets/LSVQ/videos   --out_root ./features/LSVQ_DATALAZY   --extract   --chunk_size 64 --num_workers 12 --device cuda:0
 
-python "FD-VQA test.py"   --dataset LSVQ   --info_mat ./data/LSVQ1080p_info.mat   --features_dir ./features/LSVQ_DATALAZY   --epochs 20 --batch_size 64 --seed 42   --out_dir ./results/LSVQ
+python "DATALAZY.py"   --dataset LSVQ   --info_mat ./data/LSVQ1080p_info.mat   --features_dir ./features/LSVQ_DATALAZY   --epochs 20 --batch_size 64 --seed 42   --out_dir ./results/LSVQ
 ```
 
 **Common args**
@@ -189,8 +186,8 @@ python "FD-VQA test.py"   --dataset KoNViD-1k   --info_mat ./data/KoNViD-1kinfo.
 ### LSVQ (large, DATALAZY)
 ```bash
 # Using the existing info: ./data/LSVQ1080p_info.mat
-
-python DATALAZY.py   --dataset LSVQ   --info_mat ./data/LSVQ1080p_info.mat   --videos   ./data/datasets/LSVQ/videos   --out_root ./results/LSVQ_DATALAZY   --extract --test   --chunk_size 64 --num_workers 16 --prefetch 4   --device cuda:0
+python "FD-VQA extract.py"   --dataset LSVQ   --info_mat ./data/LSVQ1080p_info.mat    --videos   ./data/datasets/LSVQ/videos    --out_features ./features/LSVQ   --backbone convnext_base   --batch_size 8 --num_workers 8 --device cuda:0
+python "DATALAZY.py"   --dataset LSVQ   --info_mat ./data/LSVQ1080p_info.mat   --features_dir ./features/LSVQ_DATALAZY   --epochs 20 --batch_size 64 --seed 42   --out_dir ./results/LSVQ
 ```
 
 ---
