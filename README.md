@@ -128,7 +128,7 @@ python "FD-VQA extract.py"   --dataset KoNViD-1k   --info_mat ./data/KoNViD-1kin
 ---
 
 ## 3) Train / Test — **FD-VQA test**
-
+When training, the FD-VQA_test program is used to test the prediction score using the model with the best validation score. If you need to adjust the training ratio, you can adjust it in args.
 ### Windows (PowerShell)
 ```powershell
 python ".\FD-VQA test.py" `
@@ -140,10 +140,6 @@ python ".\FD-VQA test.py" `
 esults\KoNViD-1k"
 ```
 
-### Linux / macOS (bash)
-```bash
-python "FD-VQA test.py"   --dataset KoNViD-1k   --info_mat ./data/KoNViD-1kinfo.mat   --features_dir ./features/KoNViD-1k   --epochs 50 --batch_size 32 --lr 1e-4 --seed 42   --out_dir ./results/KoNViD-1k
-```
 
 **Outputs**
 - `results/<DATASET>/metrics.(csv|json)` with SROCC/PLCC/KROCC/RMSE (depending on your code)
